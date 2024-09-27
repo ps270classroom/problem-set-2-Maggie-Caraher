@@ -158,10 +158,10 @@ fb_ads <- fb_ads |>
 fb_top_plot <- fb_ads |>
 filter(office == "US House") |>
   slice_max(order_by = impressions_millions, n = 15) |>
-  mutate(cand_name_last_reorder = fct_reorder(cand_name_last, impressions_millions)) |>
+  mutate(cand_name_last = fct_reorder(cand_name_last, impressions_millions)) |>
   ggplot(mapping = aes(
     x = impressions_millions,
-    y = cand_name_last_reorder)) +
+    y = cand_name_last)) +
   geom_bar(aes(
     fill = party), stat = "identity") +
   labs(
