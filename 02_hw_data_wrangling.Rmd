@@ -49,6 +49,7 @@ Use `dplyr` functions to create a table with the number of candidates in each ty
 library(dplyr)
 library(readr)
 library(knitr)
+
 fb_ads <- read_csv("data/fb_ads.csv")
 fb_ads
 
@@ -84,7 +85,19 @@ In the writeup, describe which type of candidate sponsored the most promoting ad
 
 ## Answer 2
 
+```{r}
+party_incumbent_promote <- fb_ads |>
+  filter(office %in% c("US House", "US Senate")) |>
+  na.omit() |>
+  group_by(party, incumbency) |>
+  summarize(promote_prop = mean(ad_tone_promote, na.rm = TRUE))
 
+knitr::kable(party_incumbent_promote,
+             col.names = c("Party", "Incumbency Status", "Promote Proportion"),
+             digits = 3)
+```
+
+The type of candidate with the highest average was Democrats.
 
 \newpage
 
