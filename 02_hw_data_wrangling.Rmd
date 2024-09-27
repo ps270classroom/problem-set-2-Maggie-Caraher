@@ -159,6 +159,7 @@ fb_top_plot <- fb_ads |>
 filter(office == "US House") |>
   arrange(desc(impressions_millions)) |>
   slice_max(order_by = impressions_millions, n = 15) |>
+  mutate(fct_reorder(cand_name_last, impressions_millions)) |>
   ggplot(mapping = aes(
     x = impressions_millions,
     y = reorder(cand_name_last, impressions_millions))) +
