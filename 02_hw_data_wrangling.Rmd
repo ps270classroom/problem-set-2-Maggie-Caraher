@@ -154,16 +154,16 @@ library(forcats)
 
 fb_top_plot <- fb_ads |>
 filter(office == "US House") |>
-  arrange(desc(impressions_millions)) |>
   slice_max(order_by = impressions_millions, n = 15) |>
   mutate(
     cand_name_last_reorder = fct_reorder(
       cand_name_last, impressions_millions)) |>
   ggplot(aes(
     x = impressions_millions,
-    y = cand_name_last_reorder)) +
-  geom_bar(aes( 
-    fill = party), stat = "identity") +
+    y = cand_name_last_reorder,
+    fill = party)) +
+  geom_bar( 
+    stat = "identity") +
   labs(
     title = "Top 15 House Candidate Facebook Ad Impressions, 2017-2018",
     x = "Facebook Ad Impressions (millions)",
