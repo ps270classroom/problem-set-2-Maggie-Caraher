@@ -65,7 +65,7 @@ knitr::kable(incumbency_table)
 
 ```
 
-7,013 candidates
+There are 7,013 candidates.
 
 \newpage
 
@@ -112,7 +112,21 @@ Create a histogram of this variable for just the US House races. Save the ggplot
 
 ## Answer 3
 
+```{r}
+library(ggplot2)
 
+fb_ads <- fb_ads |>
+  mutate(impressions_millions = impressions / 1000000)
+
+plot_q3 <- fb_ads |>
+  filter(office == "US House") |>
+  ggplot(mapping = aes(
+    x = impressions_millions)) +
+  geom_histogram(binwidth = 1)
+print(plot_q3)
+```
+
+The histogram shows a right skew, with more candidates having less than 10 million ads impressions.
 
 \newpage
 
