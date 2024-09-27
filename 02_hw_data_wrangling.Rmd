@@ -160,7 +160,7 @@ fb_top_plot <- fb_ads |>
   geom_bar(stat = "identity", aes(fill = party)) +
   labs(
     title = "Top 15 House Candidate Facebook Ad Impressions, 2017-2018",
-    x = "Facebook Ad Impressions (millions)",
+    x = "Facebook Ad Impressions (in millions)",
     y = "Candidate Last Name"
   ) +
   scale_fill_manual(values = c(R = "red", D = "blue"))
